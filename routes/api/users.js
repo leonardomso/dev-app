@@ -21,7 +21,7 @@ router.get("/test", (req, res) => res.json({ msg: "Users Works" }));
 // @route   GET api/users/register
 // @desc    Register user
 // @access  Public
-router.post("/register", (req, res) => {
+router.post("/signup", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
   // Check Validation
@@ -64,7 +64,7 @@ router.post("/register", (req, res) => {
 // @route   GET api/users/login
 // @desc    Login User / Returning JWT Token
 // @access  Public
-router.post("/login", (req, res) => {
+router.post("/signin", (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
   // Check Validation
