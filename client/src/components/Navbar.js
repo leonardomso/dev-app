@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { logoutUser } from "../actions/auth";
+import { clearCurrentProfile } from "../actions/profile";
 
 class Navbar extends Component {
   onLogoutClick = e => {
     e.preventDefault();
+    this.props.clearCurrentProfile();
     this.props.logoutUser();
   };
 
@@ -97,7 +98,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ logoutUser }, dispatch);
+  return bindActionCreators({ logoutUser, clearCurrentProfile }, dispatch);
 };
 
 export default connect(

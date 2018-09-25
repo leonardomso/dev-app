@@ -2,19 +2,23 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import jwtDecode from "jwt-decode";
-import styled from "styled-components";
 
 import "../app.css";
-import setAuthToken from "../constants/authToken";
-import { setCurrentUser, logoutUser } from "../actions/auth";
 import store from "../store/store";
 
-import SignUp from "../views/auth/SignUp";
-import SignIn from "../views/auth/SignIn";
+import setAuthToken from "../constants/authToken";
+import { setCurrentUser, logoutUser } from "../actions/auth";
+import { clearCurrentProfile } from "../actions/profile";
 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Landing from "./Landing";
+import PrivateRoute from "../utils/components/PrivateRoute/";
+
+import SignUp from "../views/auth/SignUp";
+import SignIn from "../views/auth/SignIn";
+import Dashboard from "../views/dashboard/";
+import CreateProfile from "../views/create-profile/";
 
 // Check for token.
 if (localStorage.jwtToken) {
@@ -30,6 +34,7 @@ if (localStorage.jwtToken) {
   if (userDecoded.exp < currentTime) {
     store.dispatch(logoutUser());
     // Clear the current profile.
+    store.dispatch(clearCurrentProfile());
     // Redirect to Sign In page.
     window.location.href = "/signin";
   }
@@ -46,6 +51,12 @@ class App extends Component {
             <Switch>
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/signin" component={SignIn} />
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute
+                exact
+                path="/create-profile"
+                component={CreateProfile}
+              />
             </Switch>
             <Footer />
           </div>
