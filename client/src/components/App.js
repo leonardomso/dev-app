@@ -19,6 +19,9 @@ import SignUp from "../views/auth/SignUp";
 import SignIn from "../views/auth/SignIn";
 import Dashboard from "../views/dashboard/";
 import CreateProfile from "../views/create-profile/";
+import EditProfile from "../views/edit-profile/";
+import AddExperience from "../views/add-credentials/AddExperience";
+import AddEducation from "../views/add-credentials/AddEducation";
 
 // Check for token.
 if (localStorage.jwtToken) {
@@ -56,6 +59,21 @@ class App extends Component {
                 exact
                 path="/create-profile"
                 component={CreateProfile}
+              />
+              <PrivateRoute
+                exact
+                path="/edit-profile"
+                component={EditProfile}
+              />
+              <PrivateRoute
+                exact
+                path="/add-experience"
+                component={AddExperience}
+              />
+              <PrivateRoute
+                exact
+                path="/add-education"
+                component={AddEducation}
               />
             </Switch>
             <Footer />
