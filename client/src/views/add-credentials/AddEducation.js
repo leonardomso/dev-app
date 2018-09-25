@@ -5,7 +5,6 @@ import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 
 import TextField from "../../utils/components/TextField";
-import TextArea from "../../utils/components/TextArea";
 
 import { addEducation } from "../../actions/profile";
 
