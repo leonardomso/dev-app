@@ -85,7 +85,7 @@ router.delete(
           }
 
           // Delete post.
-          Post.remove().then(() => res.json({ message: "Post deleted." }));
+          Post.deleteOne().then(() => res.json({ message: "Post deleted." }));
         })
         .catch(err =>
           res.status(404).json({ postNotFound: "Post not found." })

@@ -2,7 +2,7 @@ import { GET_ERRORS } from "../constants/actions";
 
 const initialState = {};
 
-const auth = (state = initialState, action) => {
+const errors = (state = initialState, action) => {
   switch (action.type) {
     case GET_ERRORS:
       return action.payload;
@@ -11,4 +11,4 @@ const auth = (state = initialState, action) => {
   }
 };
 
-export default auth;
+export default errors;
